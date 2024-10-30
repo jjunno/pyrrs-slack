@@ -1,6 +1,6 @@
 # pyrrs-slack
 
-A single application reads single RRS feed and then sends a single message to a Slack channel containing titles and URLS for each new feed item.
+A single application reads single RRS feed and then sends a single message to a Slack channel containing titles and URLs for each new feed item.
 
 Uses local store (per instance) to store up to MAX_MD5_ENTRIES entries.
 
@@ -12,6 +12,10 @@ You need to set up Slack and Slack app/bot for this.
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
+```
+python3 src/main.py
 ```
 
 # Run containers for productions
