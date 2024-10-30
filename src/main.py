@@ -14,6 +14,8 @@ INTERVAL_SECONDS = INTERVAL_MINUTES * 60
 MAX_MD5_ENTRIES = int(os.getenv('MAX_MD5_ENTRIES'))
 SENT_MESSAGES = [] # md5 hashes of sent messages (title ::: url)
 
+s = slack.Slack()
+
 def iterator():
   r = reader.Reader(RSS_FEED)
   arr = []
@@ -32,7 +34,7 @@ def store_md5(md5):
     SENT_MESSAGES.pop(0)
 
 def main():
-  print('Running main()')
+  print(f'Running main() with RSS_FEED {RSS_FEED}')
   data = iterator()
   # 'Testiotsikko \n https://www.hs.fi \n \n Testiotsikko2 \n https://www.hs.fi'
   string = ''
@@ -47,7 +49,7 @@ def main():
       print(f'Sending MD5 {md5}, title {title}')
   
   if string:
-    slack.Slack().send_message(string)
+    s.send_message(string)
   else:
     print('No new messages to send')
     

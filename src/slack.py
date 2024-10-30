@@ -1,9 +1,11 @@
 import os
-from dotenv import load_dotenv
 from slack_sdk import WebClient
-load_dotenv()
 
-SLACK_TOKEN=os.getenv('SLACK_TOKEN')
+# Read the Slack token from the Docker secret file
+slack_token_file = os.getenv('SLACK_TOKEN_FILE', '/run/secrets/slack_token')
+with open(slack_token_file, 'r') as file:
+    SLACK_TOKEN = file.read().strip()
+
 SLACK_CHANNEL=os.getenv('SLACK_CHANNEL')
 
 class Slack:
